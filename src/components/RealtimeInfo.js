@@ -182,6 +182,36 @@ const RealtimeInfo = () => {
 
 
 
+    {/* Last Month's Dividends */}
+    <Grid item xs={12} md={6} lg={4}>
+    <Card>
+      <CardContent>
+        <Typography variant="h6" role="img" aria-label="Calendar">📅 Last Month&apos;s Dividends</Typography>
+        {lastMonthDividends ? (
+          <Typography variant="body1">${lastMonthDividends}</Typography>
+        ) : (
+          <Skeleton animation="wave" variant="text" width={100} height={20} />
+        )}
+        <Typography variant="caption">Dividends distributed in the previous month.</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+
+  {/* Last Year's Dividends */}
+  <Grid item xs={12} md={6} lg={4}>
+    <Card>
+      <CardContent>
+        <Typography variant="h6" role="img" aria-label="Calendar">📅 Last Year&apos;s Dividends</Typography>
+        {lastMonthDividends ? (
+          <Typography variant="body1">${lastYearDividends}</Typography>
+        ) : (
+          <Skeleton animation="wave" variant="text" width={100} height={20} />
+        )}
+        <Typography variant="caption">Dividends distributed in the previous month.</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+
   {/* Dividend Pool */}
   <Grid item xs={12} md={6} lg={4}>
     <Card>
@@ -197,26 +227,26 @@ const RealtimeInfo = () => {
     </Card>
   </Grid>
 
-  {/* Last Month's Dividends */}
-  <Grid item xs={12} md={6} lg={4}>
-    <Card>
-      <CardContent>
-        <Typography variant="h6" role="img" aria-label="Calendar">📅 Last Month&apos;s Dividends</Typography>
-        {lastMonthDividends ? (
-          <Typography variant="body1">${lastMonthDividends}</Typography>
-        ) : (
-          <Skeleton animation="wave" variant="text" width={100} height={20} />
-        )}
-        <Typography variant="caption">Dividends distributed in the previous month.</Typography>
-      </CardContent>
-    </Card>
-  </Grid>
-
   {/* Performance */}
   <Grid item xs={12}>
     <Typography variant="h4" gutterBottom>Performance</Typography>
   </Grid>
 
+  {/* Token Trading Volume */}
+  <Grid item xs={12} md={6} lg={4}>
+    <Card>
+      <CardContent>
+        <Typography variant="h6" role="img" aria-label="Volume">🔄 Token Trading Volume</Typography>
+        {tokenTradingVolume ? (
+          <Typography variant="body1">{tokenTradingVolume}</Typography>
+        ) : (
+          <Skeleton animation="wave" variant="text" width={100} height={20} />
+        )}
+        <Typography variant="caption">Volume of INCH2 tokens traded over a specific period.</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+  
   {/* Average Monthly Rental Income */}
   <Grid item xs={12} md={6} lg={4}>
     <Card>
@@ -293,20 +323,7 @@ const RealtimeInfo = () => {
     </Card>
   </Grid>
 
-  {/* Token Trading Volume */}
-  <Grid item xs={12} md={6} lg={4}>
-    <Card>
-      <CardContent>
-        <Typography variant="h6" role="img" aria-label="Volume">🔄 Token Trading Volume</Typography>
-        {tokenTradingVolume ? (
-          <Typography variant="body1">{tokenTradingVolume}</Typography>
-        ) : (
-          <Skeleton animation="wave" variant="text" width={100} height={20} />
-        )}
-        <Typography variant="caption">Volume of INCH2 tokens traded over a specific period.</Typography>
-      </CardContent>
-    </Card>
-  </Grid>
+
 </Grid>
   
 
