@@ -44,6 +44,7 @@ INCH2 operates akin to Airbnb, focusing on purchasing real estate for short-term
 
 ## Getting Started
 
+created with  npx create-next-app@latest
 To run this project locally:
 
 1. Clone the repository.
@@ -60,3 +61,4 @@ To run this project locally:
 ## Contributing
 
 Contributions are welcome! Please read our contributing guidelines before making a pull request.
+
