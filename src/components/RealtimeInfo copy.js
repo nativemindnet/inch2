@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import { Web3 } from 'web3';
+//import { Web3 } from 'web3';
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import { Line } from 'react-chartjs-2';
@@ -83,11 +83,22 @@ import abi from '../abi/token.json';
 
 
 /////
-/////import { ethers } from 'ethers';
+import { ethers } from 'ethers';
 import { ChainId, Token, WETH, Fetcher } from '@uniswap/sdk';
 
 const getPairData = async () => {
+    const chainId = ChainId.OPTIMISM;
+    const tokenAddress1 = '0x23c76c0c76E7D1792BC1F9738A3DD97eE42868B8';
+    const tokenAddress2 = '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58';
 
+    const provider = new ethers.providers.JsonRpcProvider('https://mainnet.optimism.io');
+
+    const token1 = new Token(chainId, tokenAddress1, 18);
+    const token2 = new Token(chainId, tokenAddress2, 18);
+
+    const pair = await Fetcher.fetchPairData(token1, token2, provider);
+
+    console.log(pair);
     // Тут вы можете обработать данные пары
 };
 
@@ -122,25 +133,6 @@ const RealtimeInfo = () => {
         //console.log(abi.output.abi);
         const web3 = new Web3('https://optimism-mainnet.infura.io/v3/07aed982b7244ca8a8e207267d367baf');
         //const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
-
-
-        ////
-        /*
-const chainId = ChainId.OPTIMISM;
-const tokenAddress1 = '0x23c76c0c76E7D1792BC1F9738A3DD97eE42868B8';
-const tokenAddress2 = '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58';
-
-const provider = new ethers.providers.JsonRpcProvider('https://mainnet.optimism.io');
-
-const token1 = new Token(chainId, tokenAddress1, 18);
-const token2 = new Token(chainId, tokenAddress2, 18);
-
-//const pair = await Fetcher.fetchPairData(token1, token2, provider);
-const pair = await Fetcher.fetchPairData(token1, token2, web3);
-console.log(12345);
-console.log(pair);*/
-////
-
 
         const myContract = new web3.eth.Contract(abi.output.abi, contractAddress);
         
@@ -177,9 +169,9 @@ console.log(pair);*/
       var inches2=supply;
       //var feets2=squareInchesToSquareFeet(inches2);
       //var meters2=squareInchesToSquareMeters(inches2);
-     //setTotalSquareInches(inches2);
+      setTotalSquareInches(inches2);
 
-      //setPropertyValuation(" 2.490.000 THB | 71.142 USD");
+      setPropertyValuation(" 2.490.000 THB | 71.142 USD");
 
 /*      
       setTotalTokens(data[0].toString());
@@ -206,7 +198,20 @@ console.log(pair);*/
     <Typography variant="h4" gutterBottom>Property and Token Information</Typography>
   </Grid>
   
-
+  {/* Current Token Price */}
+  <Grid item xs={12} md={6} lg={4}>
+    <Card>
+      <CardContent>
+        <Typography variant="h6" role="img" aria-label="Price Tag">🏷️ Current Token Price</Typography>
+        {currentTokenPrice ? (
+          <Typography variant="body1">${currentTokenPrice}</Typography>
+        ) : (
+          <Skeleton animation="wave" variant="text" width={100} height={20} />
+        )}
+        <Typography variant="caption">Market price of an INCH2 token.</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
 
   {/* Total Square Inches Represented */}
    <Grid item xs={12} md={6} lg={4}>

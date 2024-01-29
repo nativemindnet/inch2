@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
-import { Web3 } from 'web3';
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import { Line } from 'react-chartjs-2';
+
+
+
+import { Web3 } from 'web3';
+
+
+
 
 //import { squareInchesToSquareFeet, squareInchesToSquareMeters } from './Calculations.js';
 
@@ -58,6 +63,10 @@ const RealtimeInfo = () => {
         const myContract = new web3.eth.Contract(abi.output.abi, contractAddress);
         
 
+
+        
+
+
         
         /*
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -82,7 +91,7 @@ const RealtimeInfo = () => {
       var supply;
       supply = 47880;
 
-      console.log(supply);
+      //console.log(supply);
       setTotalTokens(supply);
       
       
@@ -246,7 +255,7 @@ const RealtimeInfo = () => {
       </CardContent>
     </Card>
   </Grid>
-  
+
   {/* Average Monthly Rental Income */}
   <Grid item xs={12} md={6} lg={4}>
     <Card>
