@@ -1,0 +1,1 @@
+screen -S inch2 -m ./start.sh
