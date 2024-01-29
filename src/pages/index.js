@@ -13,111 +13,76 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      
       <div className="z-10 max-w-5xl w-full lg:flex font-mono text-sm items-center justify-between">
-  <div className="relative text-center">
-    <Image
-      className="dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-      src="/logo_inch2.png"
-      alt="inch2 Logo"
-      width={192}
-      height={192}
-      priority
-    />
-    <p className="mt-2">
-      <code className="font-bold">INCH2</code> &nbsp;(Square Inch)
-    </p>
-  </div>
-  <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-    <a
-      className="pointer-events-none flex items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-      href="https://dmny.org/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      By dmny.org
-    </a>
-  </div>
-</div>
-
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-
+        <div className="relative text-center">
+          <Image
+            className="dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+            src="/logo_inch2.png"
+            alt="INCH2 Logo"
+            width={192}
+            height={192}
+            priority
+          />
+          <p className="mt-2">
+            <code className="font-bold">INCH2</code> &nbsp;(Square Inch)
+          </p>
+          <p className="text-lg mt-4">
+            Invest in Real Estate, Earn with Airbnb. Own a piece of the property with INCH2 tokens.
+          </p>
+        </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <RealtimeInfo />
-      </div>
+      <RealtimeInfo />
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <section className="my-12 text-center">
+        <h2 className="text-2xl font-bold mb-4">How INCH2 Works</h2>
+        
+        {/* Introduction */}
+        <p className="text-md max-w-4xl mx-auto mb-4">
+          INCH2 is revolutionizing property investment by integrating real estate with the digital world of tokens. 
+          Here's how our unique business model operates:
+        </p>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+        {/* Step 1 - Token Representation */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold">1. Token Representation</h3>
+          <Image src="/diagrams/diagram_1.png" alt="Token Representation Diagram" width={600} height={300} />
+          <p className="text-md max-w-4xl mx-auto">
+            Each INCH2 token represents a tangible equity stake in our real estate properties. 
+            These properties are meticulously selected for Airbnb rentals.
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
+        {/* Step 2 - Dividend Distribution */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold">2. Dividend Distribution</h3>
+          <Image src="/diagrams/diagram_2.png" alt="Dividend Distribution Diagram" width={600} height={300} />
+          <p className="text-md max-w-4xl mx-auto">
+            Profits from Airbnb rentals are converted into dividends and distributed among token holders. 
+            Your share is proportional to the number of tokens you own.
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+        {/* Step 3 - Market Dynamics */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold">3. Market Dynamics</h3>
+          <Image src="/diagrams/diagram_3.png" alt="Market Dynamics Diagram" width={600} height={300} />
+          <p className="text-md max-w-4xl mx-auto">
+            The value of INCH2 tokens can fluctuate based on market trends and rental income. 
+            This offers a dynamic investment opportunity in the real estate market.
           </p>
-        </a>
-      </div>
+        </div>
+
+        {/* Future Opportunities */}
+        <div>
+          <h3 className="text-xl font-semibold">Future Opportunities</h3>
+          <p className="text-md max-w-4xl mx-auto">
+            With plans to expand our property portfolio, early investors have the potential to reap significant benefits 
+            as we acquire more high-value Airbnb locations.
+          </p>
+        </div>
+      </section>
+      
     </main>
   );
 }
