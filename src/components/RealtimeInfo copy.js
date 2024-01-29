@@ -5,17 +5,70 @@ import { Card, CardContent, Grid, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import { Line } from 'react-chartjs-2';
 
+
+//import { PoolData } from './PoolData.js';
+// import { useQuery } from '@apollo/client';
+// import { GET_POOL_DATA } from './Query';
+/*
+const { loading, error, data } = useQuery(GET_POOL_DATA, {
+  variables: { poolId:488040 },
+});
+console.log(data);
+*/
+/*
+const PoolData = ({ poolId }) => {
+ console.log(GET_POOL_DATA);
+  const { loading, error, data } = useQuery(GET_POOL_DATA, {
+    variables: { poolId },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return {total:data.pool.totalValueLockedUSD,
+      volume:data.pool.volumeUSD}
+  ;
+};
+*/
+
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+  //uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3',
+  //uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3-optimism',
+  uri: 'https://api.thegraph.com/subgraphs/name/messari/uniswap-v3-optimism',
+cache: new InMemoryCache(),
+});
+
+const GET_POOL_DATA = gql`
+  query GetPoolData($poolId: ID!) {
+    pool(id: $poolId) {
+      id
+      token0 {
+        id
+        symbol
+      }
+      token1 {
+        id
+        symbol
+      }
+      totalValueLockedUSD
+      volumeUSD
+    }
+  }
+`;
+
+
+client.query({
+  query: GET_POOL_DATA,
+  variables: { poolId: 488040 }
+})    .then(response => {
+  console.log(response);
+  //setPoolData(response.data.pool);
+  //setLoading(false);
+});
+
 //import { squareInchesToSquareFeet, squareInchesToSquareMeters } from './Calculations.js';
-
-// Function to convert square inches to square feet
-export function squareInchesToSquareFeet(squareInches) {
-  return squareInches / 144;
-}
-
-// Function to convert square inches to square meters
-export function squareInchesToSquareMeters(squareInches) {
-  return squareInches / 1550.0031;
-}
 
 const convertToSquareFeet = squareInches => squareInches / 144;
 const convertToSquareMeters = squareInches => squareInches / 1550;
@@ -25,6 +78,21 @@ const contractAddress = '0x96856161c42296124c3f4325e6aF896d64e61c6A';
 
 //const abi = [/* ABI of the smart contract */];
 import abi from '../abi/token.json';
+
+//var r=PoolData(488040);
+
+
+/////
+/////import { ethers } from 'ethers';
+import { ChainId, Token, WETH, Fetcher } from '@uniswap/sdk';
+
+const getPairData = async () => {
+
+    // Тут вы можете обработать данные пары
+};
+
+getPairData();
+/////
 
 
 const RealtimeInfo = () => {
@@ -54,6 +122,25 @@ const RealtimeInfo = () => {
         //console.log(abi.output.abi);
         const web3 = new Web3('https://optimism-mainnet.infura.io/v3/07aed982b7244ca8a8e207267d367baf');
         //const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+
+
+        ////
+        /*
+const chainId = ChainId.OPTIMISM;
+const tokenAddress1 = '0x23c76c0c76E7D1792BC1F9738A3DD97eE42868B8';
+const tokenAddress2 = '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58';
+
+const provider = new ethers.providers.JsonRpcProvider('https://mainnet.optimism.io');
+
+const token1 = new Token(chainId, tokenAddress1, 18);
+const token2 = new Token(chainId, tokenAddress2, 18);
+
+//const pair = await Fetcher.fetchPairData(token1, token2, provider);
+const pair = await Fetcher.fetchPairData(token1, token2, web3);
+console.log(12345);
+console.log(pair);*/
+////
+
 
         const myContract = new web3.eth.Contract(abi.output.abi, contractAddress);
         
@@ -88,11 +175,11 @@ const RealtimeInfo = () => {
       
 
       var inches2=supply;
-      var feets2=squareInchesToSquareFeet(inches2);
-      var meters2=squareInchesToSquareMeters(inches2);
-      setTotalSquareInches(inches2);
+      //var feets2=squareInchesToSquareFeet(inches2);
+      //var meters2=squareInchesToSquareMeters(inches2);
+     //setTotalSquareInches(inches2);
 
-      setPropertyValuation(" 2.490.000 THB | 71.142 USD");
+      //setPropertyValuation(" 2.490.000 THB | 71.142 USD");
 
 /*      
       setTotalTokens(data[0].toString());
@@ -119,20 +206,7 @@ const RealtimeInfo = () => {
     <Typography variant="h4" gutterBottom>Property and Token Information</Typography>
   </Grid>
   
-  {/* Current Token Price */}
-  <Grid item xs={12} md={6} lg={4}>
-    <Card>
-      <CardContent>
-        <Typography variant="h6" role="img" aria-label="Price Tag">🏷️ Current Token Price</Typography>
-        {currentTokenPrice ? (
-          <Typography variant="body1">${currentTokenPrice}</Typography>
-        ) : (
-          <Skeleton animation="wave" variant="text" width={100} height={20} />
-        )}
-        <Typography variant="caption">Market price of an INCH2 token.</Typography>
-      </CardContent>
-    </Card>
-  </Grid>
+
 
   {/* Total Square Inches Represented */}
    <Grid item xs={12} md={6} lg={4}>
@@ -181,6 +255,35 @@ const RealtimeInfo = () => {
   </Grid>
 
 
+  {/* Last Month's Dividends */}
+  <Grid item xs={12} md={6} lg={4}>
+    <Card>
+      <CardContent>
+        <Typography variant="h6" role="img" aria-label="Calendar">📅 Last Month&apos;s Dividends</Typography>
+        {lastMonthDividends ? (
+          <Typography variant="body1">${lastMonthDividends}</Typography>
+        ) : (
+          <Skeleton animation="wave" variant="text" width={100} height={20} />
+        )}
+        <Typography variant="caption">Dividends distributed in the previous month.</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+
+  {/* Last Year's Dividends */}
+  <Grid item xs={12} md={6} lg={4}>
+    <Card>
+      <CardContent>
+        <Typography variant="h6" role="img" aria-label="Calendar">📅 Last Year&apos;s Dividends</Typography>
+        {lastMonthDividends ? (
+          <Typography variant="body1">${lastYearDividends}</Typography>
+        ) : (
+          <Skeleton animation="wave" variant="text" width={100} height={20} />
+        )}
+        <Typography variant="caption">Dividends distributed in the previous month.</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
 
   {/* Dividend Pool */}
   <Grid item xs={12} md={6} lg={4}>
@@ -197,20 +300,6 @@ const RealtimeInfo = () => {
     </Card>
   </Grid>
 
-  {/* Last Month's Dividends */}
-  <Grid item xs={12} md={6} lg={4}>
-    <Card>
-      <CardContent>
-        <Typography variant="h6" role="img" aria-label="Calendar">📅 Last Month&apos;s Dividends</Typography>
-        {lastMonthDividends ? (
-          <Typography variant="body1">${lastMonthDividends}</Typography>
-        ) : (
-          <Skeleton animation="wave" variant="text" width={100} height={20} />
-        )}
-        <Typography variant="caption">Dividends distributed in the previous month.</Typography>
-      </CardContent>
-    </Card>
-  </Grid>
 
   {/* Performance */}
   <Grid item xs={12}>
